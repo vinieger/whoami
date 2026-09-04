@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ .Params.name }}{{ with .Params.tagline }} — {{ . }}{{ end }}</title>
+  <meta name="description" content="{{ .Description | default .Params.tagline }}">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <link rel="stylesheet" href="{{ "style.css" | relURL }}">
+</head>
+<body>
+  <section class="hero">
+    <div class="hero-inner">
+      {{ with .Params.avatar }}
+        <img class="avatar" src="{{ . | relURL }}" alt="{{ $.Params.name }}">
+      {{ end }}
+      <h1>{{ .Params.name }}</h1>
+      {{ with .Params.tagline }}<p class="tagline">{{ . }}</p>{{ end }}
+      {{ with .Params.bio }}<p class="bio">{{ . }}</p>{{ end }}
+      {{ with .Params.links }}
+        <ul class="links">
+          {{ range . }}
+            <li>
+              <a href="{{ .url }}" rel="me noopener">
+                {{ with .icon }}
+                  <span class="link-icon"><img src="{{ . | relURL }}" alt="" loading="lazy"></span>
+                {{ end }}
+                {{ .label }}
+              </a>
+            </li>
+          {{ end }}
+        </ul>
+      {{ end }}
+    </div>
+  </section>
+
+  <main class="content">
+    {{ with .Params.talks }}
+      <section class="block">
+        <h2>Talks</h2>
+        <ul class="list">
+          {{ $prevYear := "" }}
+          {{ range . }}
+            {{ if ne .year $prevYear }}
+              <li class="year-divider">{{ .year }}</li>
+              {{ $prevYear = .year }}
+            {{ end }}
+            <li>
+              <a href="{{ .url }}" target="_blank" rel="noopener">{{ .title }}</a>
+              <span class="meta">{{ .event }}</span>
+              {{ with .desc }}<span class="desc">{{ . }}</span>{{ end }}
+            </li>
+          {{ end }}
+        </ul>
+      </section>
+    {{ end }}
+
+    {{ with .Params.posts }}
+      <section class="block">
+        <h2>Blog Posts</h2>
+        {{ with $.Params.post_sources }}
+          <div class="sources">
+            {{ range . }}
+              <a href="{{ .url }}" target="_blank" rel="noopener">{{ .label }} →</a>
+            {{ end }}
+          </div>
+        {{ end }}
+        <ul class="list">
+          {{ $prevYear := "" }}
+          {{ range . }}
+            {{ if ne .year $prevYear }}
+              <li class="year-divider">{{ .year }}</li>
+              {{ $prevYear = .year }}
+            {{ end }}
+            <li>
+              <a href="{{ .url }}" target="_blank" rel="noopener">{{ .title }}</a>
+              <span class="meta">{{ .date }} · {{ .org }}</span>
+              {{ with .desc }}<span class="desc">{{ . }}</span>{{ end }}
+            </li>
+          {{ end }}
+        </ul>
+      </section>
+    {{ end }}
+
+    {{ with .Params.other }}
+      <section class="block">
+        <h2>Other</h2>
+        <ul class="list">
+          {{ $prevYear := "" }}
+          {{ range . }}
+            {{ if ne .year $prevYear }}
+              <li class="year-divider">{{ .year }}</li>
+              {{ $prevYear = .year }}
+            {{ end }}
+            <li>
+              <a href="{{ .url }}" target="_blank" rel="noopener">{{ .title }}</a>
+              {{ with .meta }}<span class="meta">{{ . }}</span>{{ end }}
+              {{ with .desc }}<span class="desc">{{ . }}</span>{{ end }}
+            </li>
+          {{ end }}
+        </ul>
+      </section>
+    {{ end }}
+  </main>
+</body>
+</html>
