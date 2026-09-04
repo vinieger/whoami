@@ -3,11 +3,64 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ .Params.name }}{{ with .Params.tagline }} — {{ . }}{{ end }}</title>
-  <meta name="description" content="{{ .Description | default .Params.tagline }}">
+  {{ $title := .Params.name }}
+  {{ with .Params.tagline }}{{ $title = printf "%s: %s" $title . }}{{ end }}
+  {{ $desc := .Description | default .Params.tagline }}
+  <title>{{ $title }}</title>
+  <meta name="description" content="{{ $desc }}">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="{{ .Permalink }}">
+
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="{{ $title }}">
+  <meta property="og:description" content="{{ $desc }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:site_name" content="{{ .Params.name }}">
+  {{ with .Params.avatar }}<meta property="og:image" content="{{ . | absURL }}">{{ end }}
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{{ $title }}">
+  <meta name="twitter:description" content="{{ $desc }}">
+  {{ with .Params.avatar }}<meta name="twitter:image" content="{{ . | absURL }}">{{ end }}
+
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; base-uri 'none'; form-action 'none'">
   <meta name="referrer" content="no-referrer">
   <link rel="stylesheet" href="{{ "style.css" | relURL }}">
+
+  {{ $sameAs := slice }}
+  {{ range .Params.links }}{{ $sameAs = $sameAs | append .url }}{{ end }}
+
+  {{/* Built automatically from talks/posts/other — no manual SEO upkeep needed when adding content. */}}
+  {{ $knowsAbout := slice }}
+  {{ $mentions := slice }}
+  {{ range .Params.talks }}
+    {{ $knowsAbout = $knowsAbout | append .title }}
+    {{ $mentions = $mentions | append (dict "@type" "CreativeWork" "name" .title "url" .url "description" .desc) }}
+  {{ end }}
+  {{ range .Params.posts }}
+    {{ $knowsAbout = $knowsAbout | append .title }}
+    {{ $mentions = $mentions | append (dict "@type" "CreativeWork" "name" .title "url" .url "description" .desc) }}
+  {{ end }}
+  {{ range .Params.other }}
+    {{ $knowsAbout = $knowsAbout | append .title }}
+    {{ $mentions = $mentions | append (dict "@type" "CreativeWork" "name" .title "url" .url "description" .desc) }}
+  {{ end }}
+
+  {{ $person := dict
+    "@context" "https://schema.org"
+    "@type" "Person"
+    "name" .Params.name
+    "jobTitle" .Params.tagline
+    "description" $desc
+    "url" .Permalink
+    "sameAs" $sameAs
+    "knowsAbout" $knowsAbout
+    "mentions" $mentions
+  }}
+  {{ with .Params.avatar }}{{ $person = merge $person (dict "image" (. | absURL)) }}{{ end }}
+  {{ with .Params.alternate_names }}{{ $person = merge $person (dict "alternateName" .) }}{{ end }}
+  {{ with .Params.organization }}{{ $person = merge $person (dict "worksFor" (dict "@type" "Organization" "name" .)) }}{{ end }}
+  <script type="application/ld+json">{{ jsonify (dict "indent" "  ") $person | safeJS }}</script>
 </head>
 <body>
   <section class="hero">

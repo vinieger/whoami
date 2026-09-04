@@ -3,3 +3,4 @@ locale = "en-us"
 title = "Vini Egerland"
 
 disableKinds = ["taxonomy", "term", "RSS"]
+enableRobotsTXT = true
