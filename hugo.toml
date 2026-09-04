@@ -1,0 +1,5 @@
+baseURL = "https://vinieger.github.io/whoami/"
+locale = "en-us"
+title = "Vini Egerland"
+
+disableKinds = ["taxonomy", "term", "RSS"]
