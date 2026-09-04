@@ -1,6 +1,6 @@
 ---
 title: "Vini Egerland"
-description: "Security researcher — bio, talks, and writing."
+description: "Security researcher: bio, talks, and writing."
 name: "Vini Egerland"
 tagline: "Security Researcher"
 avatar: "avatar.png"
