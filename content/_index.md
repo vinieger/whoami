@@ -35,6 +35,12 @@ post_sources:
   - label: "all Netskope Threat Labs posts"
     url: "https://www.netskope.com/blog/author/vegerland"
 posts:
+  - title: "$100k in Crypto Drained by the Underground Operation"
+    date: "October 1, 2026"
+    year: 2026
+    org: "Netskope Threat Labs"
+    desc: "An Underground-builder loader injects a Vidar-class stealer into live browser sessions to drain exchange accounts, netting ~$100k across 23 chains."
+    url: "https://www.netskope.com/blog/100k-in-crypto-drained-by-the-underground-operation"
   - title: "EtherHiding in the Browser: ClickFix Chain Ends in Amatera"
     date: "August 27, 2026"
     year: 2026
