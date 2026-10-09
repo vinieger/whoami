@@ -11,7 +11,7 @@ alternate_names:
 organization: "Netskope Threat Labs"
 avatar: "avatar.png"
 bio: >
-  Vini is a CISSP-certified threat researcher at Netskope Threat Labs, where he focuses on the security implications of emerging technologies, supply chain compromise, and post-compromise tactics.
+  Vini is a CISSP-certified threat researcher at Netskope Threat Labs, where he focuses on the security implications of emerging technologies, adversary operations, and post-compromise tactics.
 links:
   - label: "LinkedIn"
     url: "https://www.linkedin.com/in/vinicius-egerland"
