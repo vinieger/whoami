@@ -13,18 +13,22 @@ avatar: "avatar.png"
 bio: >
   Vini is a CISSP-certified threat researcher at Netskope Threat Labs, where he focuses on the security implications of emerging technologies, supply chain compromise, and post-compromise tactics.
 links:
-  - label: "GitHub"
-    url: "https://github.com/vinieger"
-    icon: "icons/github.svg"
   - label: "LinkedIn"
     url: "https://www.linkedin.com/in/vinicius-egerland"
     icon: "icons/linkedin.ico"
+  - label: "GitHub"
+    url: "https://github.com/vinieger"
+    icon: "icons/github.svg"
   - label: "Credly"
     url: "https://www.credly.com/users/vinicius-egerland/badges"
     icon: "icons/credly.ico"
   - label: "Orcid"
     url: "https://orcid.org/0009-0008-5613-0118"
     icon: "icons/orcid.ico"
+links_secondary:
+  - label: "Netskope Threat Labs - Blog"
+    url: "https://www.netskope.com/blog/author/vegerland"
+    icon: "icons/netskope.ico"
 talks:
   - title: "Hunting Blockchain Dead-Drop Resolvers in Enterprise Traffic"
     event: "BSides Barcelona 2026"
@@ -36,9 +40,9 @@ talks:
     year: 2026
     desc: "How OAuth authorization abuse has evolved from third-party supply-chain breaches to the agentic AI era."
     url: "https://web.archive.org/web/20260422083530/https://www.infosecurityeurope.com/en-gb/conference-programme/session-details.4886.261530.Broken%2BTrust%253A%2BOAuth%2BAbuse%2BEvolved%2BFrom%2BThird-Party%2BBreaches%2Bto%2BAgentic%2BEra.html"
-post_sources:
-  - label: "all Netskope Threat Labs posts"
-    url: "https://www.netskope.com/blog/author/vegerland"
+post_sources: []
+  # - label: ""
+  #   url: ""
 posts:
   - title: "$100k in Crypto Drained by the Underground Operation"
     date: "October 1, 2026"

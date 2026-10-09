@@ -1,5 +1,7 @@
 # whoami
 
+> The site is live at `https://vinieger.github.io/whoami/`.
+
 Single-page bio/links site, built with [Hugo](https://gohugo.io) and deployed on GitHub Pages.
 Content lives in `content/_index.md`.
 
@@ -21,4 +23,4 @@ Visit http://localhost:1313. Hugo rebuilds and live-reloads on save. (`.claude/l
 
 This repo builds and deploys automatically via [`.github/workflows/hugo.yml`](.github/workflows/hugo.yml) on every push to `main`. 
 The workflow installs Hugo, builds with `hugo --gc --minify`, and deploys the `public/` output via `actions/deploy-pages`.
-The site is live at `https://vinieger.github.io/whoami/`.
+

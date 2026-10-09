@@ -29,6 +29,8 @@
 
   {{ $sameAs := slice }}
   {{ range .Params.links }}{{ $sameAs = $sameAs | append .url }}{{ end }}
+  {{ range .Params.links_secondary }}{{ $sameAs = $sameAs | append .url }}{{ end }}
+  {{ range .Params.links_secondary }}{{ $sameAs = $sameAs | append .url }}{{ end }}
 
   {{/* Built automatically from talks/posts/other — no manual SEO upkeep needed when adding content. */}}
   {{ $knowsAbout := slice }}
@@ -72,18 +74,34 @@
       {{ with .Params.tagline }}<p class="tagline">{{ . }}</p>{{ end }}
       {{ with .Params.bio }}<p class="bio">{{ . }}</p>{{ end }}
       {{ with .Params.links }}
-        <ul class="links">
-          {{ range . }}
-            <li>
-              <a href="{{ .url }}" rel="me noopener">
-                {{ with .icon }}
-                  <span class="link-icon"><img src="{{ . | relURL }}" alt="" loading="lazy"></span>
-                {{ end }}
-                {{ .label }}
-              </a>
-            </li>
+        <div class="links-rows">
+          <ul class="links">
+            {{ range . }}
+              <li>
+                <a href="{{ .url }}" rel="me noopener">
+                  {{ with .icon }}
+                    <span class="link-icon"><img src="{{ . | relURL }}" alt="" loading="lazy"></span>
+                  {{ end }}
+                  {{ .label }}
+                </a>
+              </li>
+            {{ end }}
+          </ul>
+          {{ with $.Params.links_secondary }}
+            <ul class="links links-secondary">
+              {{ range . }}
+                <li>
+                  <a href="{{ .url }}" rel="me noopener">
+                    {{ with .icon }}
+                      <span class="link-icon"><img src="{{ . | relURL }}" alt="" loading="lazy"></span>
+                    {{ end }}
+                    {{ .label }}
+                  </a>
+                </li>
+              {{ end }}
+            </ul>
           {{ end }}
-        </ul>
+        </div>
       {{ end }}
     </div>
   </section>
