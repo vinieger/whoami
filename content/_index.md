@@ -26,6 +26,11 @@ links:
     url: "https://orcid.org/0009-0008-5613-0118"
     icon: "icons/orcid.ico"
 talks:
+  - title: "Hunting Blockchain Dead-Drop Resolvers in Enterprise Traffic"
+    event: "BSides Barcelona 2026"
+    year: 2026
+    desc: "Hunting for Malware C2 that leverages public smart contracts (EtherHiding), a hidden dead drop nobody can seize."
+    url: "https://web.archive.org/web/20261005182321/https://bsides.barcelona/schedule#:~:text=Hunting%20Blockchain%20Dead%2DDrop%20Resolvers%20in%20Enterprise%20Traffic"
   - title: "Broken Trust: OAuth Abuse Evolved From Third-Party Breaches to Agentic Era"
     event: "InfoSec Europe 2026"
     year: 2026
